@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+		<link type="text/css" rel="Stylesheet" href="css/checkbox.css"/>
+		<script type="text/javascript" language="javascript" src="js/checkbox.js"></script>
+	</head>
+	<body>
+	    <form id="f">
+			<h1>Checkbox demo</h1>
+			<p>
+			provides same user experience as regular checkbox
+			</p>
+			<p>
+			<input type="input" value="focus me and press tab key"/>
+			</p>
+			
+			
+				<div id="allbrowsers_wrap" class="checkbox">
+						<input id="allbrowsers" type="checkbox"/><label for="allbrowsers">All Browsers</label>
+					</div>
+				<ul>
+				<li>
+				<div id="firefox_wrap" class="checkbox">
+					<input id="firefox" checked="checked" type="checkbox"/><label for="firefox">Firefox</label>
+				</div>
+				</li>
+				<li>
+					<div id="chrome_wrap" class="checkbox">
+						<input id="chrome" type="checkbox"/><label for="chrome">Chrome</label>
+					</div>
+				</li>
+				<li>
+					<div id="safari_wrap" class="checkbox">
+						<input id="safari" type="checkbox"/><label for="safari">Safari</label>
+					</div>
+				</li>
+				<li>
+					<div id="iexplorer_wrap" class="checkbox">
+						<input id="iexplorer" type="checkbox"/><label for="iexplorer">Internet Explorer</label>
+					</div>
+				</li>
+				
+			</ul>
+			
+			<script type="text/javascript">
+				(function(){
+				demopage = {};
+			
+				demopage.browsers = browsers = {};
+				
+				demopage.allCheckbox = new Checkbox("allbrowsers_wrap", "allbrowsers");
+				
+				browsers.firefox = new Checkbox("firefox_wrap", "firefox");
+				browsers.chrome = new Checkbox("chrome_wrap", "chrome");
+				browsers.safari = new Checkbox("safari_wrap", "safari");
+				browsers.iexplorer = new Checkbox("iexplorer_wrap", "iexplorer");
+				
+				//init
+				var hasChecked = false;
+				var hasUnchecked = false;
+				for(var i in browsers){
+					var isChecked = browsers[i].getState().checked;
+					if(typeof isChecked == 'undefined'){
+						demopage.allCheckbox.undefine();
+						break;
+					}else if(isChecked){
+						hasChecked = true;
+					}else{
+						hasUnchecked = true;
+					}
+				}
+				if(hasChecked == hasUnchecked){
+					demopage.allCheckbox.undefine();
+				}else{
+					hasChecked ? demopage.allCheckbox.check() : demopage.allCheckbox.uncheck();
+				}
+				
+				demopage.onStateChangedCallBack = function(sender, state, propertyChanged){
+					if(propertyChanged != "checked"){
+						return;
+					}
+					var checked = state.checked;
+					var all = true;
+					for(var i in browsers){
+						if(browsers[i].getState().checked != checked){
+							all = false;
+							break;
+						}
+					}
+					if(all){
+						checked ? demopage.allCheckbox.check() : demopage.allCheckbox.uncheck();
+					}else{
+						demopage.allCheckbox.undefine();
+					}
+				};
+				
+				demopage.all_onStateChangedCallBack = function(sender, state, propertyChanged){
+					if(propertyChanged != "checked"){
+						return;
+					}
+					if(typeof state.checked == 'undefined'){
+						return;
+					}else if(state.checked){
+						for(var i in browsers){
+							browsers[i].check();
+						}
+					}else{
+						for(var i in browsers){
+							browsers[i].uncheck();
+						}
+					}
+					
+				};
+				
+				browsers.firefox.addOnStateChanged(demopage.onStateChangedCallBack);
+				browsers.chrome.addOnStateChanged(demopage.onStateChangedCallBack);
+				browsers.safari.addOnStateChanged(demopage.onStateChangedCallBack);
+				browsers.iexplorer.addOnStateChanged(demopage.onStateChangedCallBack);
+				demopage.allCheckbox.addOnStateChanged(demopage.all_onStateChangedCallBack);
+				
+				})();
+				</script>
+			<input type="input"/>
+	    </form>
+	</body>
+</html>

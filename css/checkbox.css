@@ -1,0 +1,99 @@
+
+.checkbox
+, .checkbox-focused
+, .checkbox-checked
+, .checkbox-checked-focused
+, .checkbox-disabled
+, .checkbox-checked-disabled
+, .checkbox-undefined
+, .checkbox-undefined-focused
+, .checkbox-undefined-disabled{
+	background: transparent url(../img/checkbox.png) no-repeat 0 0;
+	width: 17px;
+	height: 17px;
+	display: block;
+	border: 0px none;
+	outline: 0px none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.checkbox input[type="checkbox"]
+, .checkbox-focused input[type="checkbox"]
+, .checkbox-checked input[type="checkbox"]
+, .checkbox-checked-focused input[type="checkbox"]
+, .checkbox-disabled input[type="checkbox"]
+, .checkbox-checked-disabled input[type="checkbox"]
+, .checkbox-undefined input[type="checkbox"]
+, .checkbox-undefined-focused input[type="checkbox"]
+, .checkbox-undefined-disabled input[type="checkbox"]{
+	width: 13px;
+	height: 13px;
+	margin: 0px;
+	padding:0px;
+	outline: 0px none;
+	filter:alpha(opacity=0);
+	opacity: 0;
+	border: 0px none;
+}
+
+.checkbox:hover
+, .checkbox-focused{
+	background-position: 0 -17px; 
+}
+
+.checkbox-checked{
+	background-position: 0 -34px;
+}
+
+.checkbox-checked:hover
+, .checkbox-checked-focused{
+	background-position: 0 -51px; 
+}
+
+.checkbox-disabled{
+	background-position: 0 -68px; 
+}
+
+.checkbox-checked-disabled{
+	background-position: 0 -83px; 
+}
+.checkbox-undefined{
+	background-position: 0 -98px; 
+}
+
+.checkbox-undefined:hover
+, .checkbox-undefined-focused{
+	background-position: 0 -115px; 
+}
+
+.checkbox label
+, .checkbox-focused label
+, .checkbox-checked label
+, .checkbox-checked-focused label
+, .checkbox-disabled label
+, .checkbox-checked-disabled label
+, .checkbox-undefined label
+, .checkbox-undefined-focused label
+, .checkbox-undefined-disabled label{
+	position: absolute;
+	margin-left: 7px;
+	white-space: nowrap;
+	border: 0 none;
+}
+
+
+/* demo page related styles */
+input{
+	color: #505050;
+	width: 200px;
+}
+
+ul{
+	list-style:none outside none;
+}
+
+li {
+	margin: 6px;
+}
+
